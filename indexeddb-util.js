@@ -1,9 +1,9 @@
 define([
 	'angular', 'indexeddbshim'
 ], function (angular, indexedDBShim) {
-	var module = angular.module('mpjIndexeddbDao', []);
+	var module = angular.module('IndexeddbDao', []);
 
-	module.factory("mpjIndexeddbDao", [function () {
+	module.factory("IndexeddbDao", [function () {
 		return {
 			// apis
 			get: get,
@@ -20,7 +20,7 @@ define([
 		};
 	}]);
 
-	var storageName = 'mpj_localDb',
+	var storageName = 'localDb',
 		curVer = 2,
 		db = null;
 
