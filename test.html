@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>idb test</title>
+</head>
+<body>
+
+<script src="lib/lodash.js"></script>
+<script src="lib/idb-shim.js"></script>
+<script src="idb.js"></script>
+<script>
+    IDB.initObjectStores((err) => {
+        if (err) {
+            return console.log(err);
+        }
+
+        let now = new Date().getTime();
+
+        function addByTime(obj) {
+            obj.time = now;
+            IDB.add('_log', obj, null, null);
+            now++;
+            console.log(123);
+        }
+
+//        addByTime({name: 'abc'});
+//        addByTime({name: 'abc'});
+//        addByTime({name: 'abc'});
+//        addByTime({name: 'abc'});
+//        addByTime({name: 'abc'});
+//        addByTime({name: 'abc'});
+//        addByTime({name: 'abc'});
+//        addByTime({name: 'abc'});
+//        addByTime({name: 'abc'});
+//        addByTime({name: 'abc'});
+//        addByTime({name: 'abc'});
+//        addByTime({name: 'abc'});
+    });
+
+    setTimeout(() => {
+//        (storeName, cb, size, indexName, lower, keyOnly, isPrefix, lowerOpen, upper, upperOpen, advanceCount, desc)
+        IDB.getByCursor('_log', function (err, data) {
+            if (err) {
+                return console.log(err);
+            }
+
+            console.log(data);
+        }, 6, null, 1518362060810)
+    }, 500)
+</script>
+</body>
+</html>
